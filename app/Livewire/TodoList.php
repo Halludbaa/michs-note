@@ -17,7 +17,6 @@ class TodoList extends Component
     public $status = true;
 
 
-
     public function mount($task, $id, $status)
     {
         $this->id = $id;
@@ -32,6 +31,7 @@ class TodoList extends Component
             "task" => $this->task,
             "status" => $this->status ? "completed" : "pending",
         ]);
+        $this->dispatch("saved");
     }
 
     public function render()

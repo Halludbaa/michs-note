@@ -10,14 +10,8 @@ use Livewire\Component;
 
 class TodoListGroup extends Component
 {
-    public $todo_list = null;
 
-    public function mount()
-    {
-        $this->todo_list = TodoList::with([
-            "todos"
-        ])->where("user_id", "=", Auth::user()->id)->get();
-    }
+    public function mount() {}
 
     #[On("add-todo")]
     public function add($title)
@@ -28,15 +22,18 @@ class TodoListGroup extends Component
         ]);
     }
 
-    public function remove()
+    public function remove($id)
     {
-        dd("hello");
+        TodoList::destroy($id);
     }
 
     public function render()
     {
+        $todo_list = TodoList::with([
+            "todos"
+        ])->where("user_id", "=", Auth::user()->id)->get();
         return view('livewire.todo-list-group', [
-            "todo_list" => $this->todo_list,
+            "todo_list" => $todo_list,
         ]);
     }
 }
