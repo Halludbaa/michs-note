@@ -1,6 +1,3 @@
 <x-layouts.app>
-    @php
-        $task = 'Olahraga';
-    @endphp
-    <livewire:todo-list :$task />
+    <livewire:todo-list-group />
 </x-layouts.app>
