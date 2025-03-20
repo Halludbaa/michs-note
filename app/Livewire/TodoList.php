@@ -31,7 +31,14 @@ class TodoList extends Component
             "task" => $this->task,
             "status" => $this->status ? "completed" : "pending",
         ]);
-        $this->dispatch("saved");
+        // $this->dispatch("saved");
+    }
+
+
+    public function delete($id)
+    {
+        ToDO::destroy($id);
+        $this->dispatch("deleted");
     }
 
     public function render()

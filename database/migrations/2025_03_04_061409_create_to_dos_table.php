@@ -19,12 +19,12 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('groups', function (Blueprint $table) {
-            $table->uuid("id")->primary();
-            $table->string("name", 100);
-            $table->foreignUuid("user_id")->constrained("users", "id")->cascadeOnDelete();
-            $table->timestamps();
-        });
+        // Schema::create('groups', function (Blueprint $table) {
+        //     $table->uuid("id")->primary();
+        //     $table->string("name", 100);
+        //     $table->foreignUuid("user_id")->constrained("users", "id")->cascadeOnDelete();
+        //     $table->timestamps();
+        // });
 
         Schema::create('to_dos', function (Blueprint $table) {
             $table->uuid("id")->primary();
@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string("description", 10_000)->nullable();
             $table->enum("status", ["pending", "completed"])->default("pending");
             $table->foreignUuid("todo_list_id")->constrained("todo_list", "id")->cascadeOnDelete();
-            $table->foreignUuid("group_id")->nullable()->constrained("groups", "id")->nullOnDelete();
+            // $table->foreignUuid("group_id")->nullable()->constrained("groups", "id")->nullOnDelete();
             $table->timestamps();
         });
     }
@@ -44,5 +44,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('to_dos');
         Schema::dropIfExists('groups');
+        Schema::dropIfExists('todo_list');
     }
 };

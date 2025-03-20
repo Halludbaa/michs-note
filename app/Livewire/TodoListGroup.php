@@ -32,8 +32,6 @@ class TodoListGroup extends Component
         $todo_list = TodoList::with([
             "todos"
         ])->where("user_id", "=", Auth::user()->id)->get();
-        return view('livewire.todo-list-group', [
-            "todo_list" => $todo_list,
-        ]);
+        return view('livewire.todo-list-group', compact("todo_list"));
     }
 }
